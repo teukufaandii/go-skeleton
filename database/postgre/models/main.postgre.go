@@ -35,15 +35,26 @@ func (db *UserDB) ToDomain() *usecasemodels.UserDTO {
 	}
 }
 
-// FromDomain creates a DB model from a Domain DTO.
-func FromDomain(dto *usecasemodels.UserDTO) *UserDB {
+// NewUserDB creates a DB model from a Domain DTO.
+func NewUserDB(dto *usecasemodels.UserDTO) *UserDB {
 	if dto == nil {
 		return nil
 	}
+	
+	var createdAt, updatedAt time.Time
+	if dto.CreatedAt != 0 {
+		createdAt = time.Unix(dto.CreatedAt, 0)
+	}
+	if dto.UpdatedAt != 0 {
+		updatedAt = time.Unix(dto.UpdatedAt, 0)
+	}
+	
 	return &UserDB{
-		ID:       dto.ID,
-		Name:     dto.Name,
-		Email:    dto.Email,
-		Password: dto.Password,
+		ID:        dto.ID,
+		Name:      dto.Name,
+		Email:     dto.Email,
+		Password:  dto.Password,
+		CreatedAt: createdAt,
+		UpdatedAt: updatedAt,
 	}
 }

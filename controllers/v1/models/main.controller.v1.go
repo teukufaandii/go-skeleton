@@ -28,8 +28,8 @@ func (req *UserRequest) ToDomain() *usecasemodels.UserDTO {
 	}
 }
 
-// FromDomain converts the Domain DTO to the HTTP response model.
-func FromDomain(dto *usecasemodels.UserDTO) *UserResponse {
+// NewUserResponse converts the Domain DTO to the HTTP response model.
+func NewUserResponse(dto *usecasemodels.UserDTO) *UserResponse {
 	if dto == nil {
 		return nil
 	}
