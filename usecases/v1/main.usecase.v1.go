@@ -2,7 +2,7 @@ package usecase
 
 import (
 	"context"
-	"go-skeleton/database"
+	"go-skeleton/database/postgre"
 	dbmodels "go-skeleton/database/postgre/models"
 	usecasemodels "go-skeleton/usecases/v1/models"
 )
@@ -15,11 +15,11 @@ type UserUsecase interface {
 
 // userUsecase is the concrete implementation of UserUsecase interface.
 type userUsecase struct {
-	repo database.UserRepository
+	repo postgre.UserRepository
 }
 
 // NewUserUsecase creates a new instance of UserUsecase.
-func NewUserUsecase(repo database.UserRepository) UserUsecase {
+func NewUserUsecase(repo postgre.UserRepository) UserUsecase {
 	return &userUsecase{
 		repo: repo,
 	}
